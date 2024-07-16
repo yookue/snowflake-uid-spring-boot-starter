@@ -1,6 +1,6 @@
 # Snowflake UID Spring Boot Starter
 
-Spring Boot application integrates `snowflake` quickly, to generate unique identifers in order.
+Spring Boot application integrates `snowflake` quickly, to generate unique identifiers in order.
 
 ## Quickstart
 
@@ -26,7 +26,7 @@ spring:
 
 - Configure your beans with a `UidGenerator` bean by constructor or `@Autowired`/`@Resource` annotation, then you can access it as you wish.
 
-  There are two different implements of `UidGenerator` for different sinarios:
+  There are two different implements of `UidGenerator` for different scenarios:
 
 | Implement Class       | Primary Bean |
 |-----------------------|--------------|
@@ -40,7 +40,7 @@ spring:
 
 ## Requirement
 
-- jdk 1.8+
+- jdk 17+
 
 ## License
 

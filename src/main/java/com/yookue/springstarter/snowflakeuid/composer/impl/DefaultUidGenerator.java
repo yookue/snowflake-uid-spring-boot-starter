@@ -68,10 +68,9 @@ import lombok.extern.slf4j.Slf4j;
 @RequiredArgsConstructor
 @Getter(value = AccessLevel.PROTECTED)
 @Slf4j
-@SuppressWarnings({"unused", "WeakerAccess"})
+@SuppressWarnings({"unused", "WeakerAccess", "LoggingSimilarMessage"})
 public class DefaultUidGenerator implements UidGenerator, InitializingBean {
     private final SnowflakeUidProperties uidProperties;
-
     private final WorkerIdAssigner idAssigner;
 
     /**
@@ -97,12 +96,12 @@ public class DefaultUidGenerator implements UidGenerator, InitializingBean {
                 log.warn("WorkerId '{}' exceeds max workerId '{}'", workerId, bitsAllocator.getMaxWorkerId());
             }
             workerId = workerId % bitsAllocator.getMaxWorkerId();
-            if (log.isInfoEnabled()) {
-                log.info("Reset new workerId to '{}'", workerId);
+            if (log.isDebugEnabled()) {
+                log.debug("Reset new workerId to '{}'", workerId);
             }
         }
-        if (log.isInfoEnabled()) {
-            log.info("Initialized bits (1, {}, {}, {}) for workerId '{}'", uidProperties.getTimeBits(), uidProperties.getWorkerBits(), uidProperties.getSeqBits(), workerId);
+        if (log.isDebugEnabled()) {
+            log.debug("Initialized bits (1, {}, {}, {}) for workerId '{}'", uidProperties.getTimeBits(), uidProperties.getWorkerBits(), uidProperties.getSeqBits(), workerId);
         }
     }
 
@@ -156,8 +155,8 @@ public class DefaultUidGenerator implements UidGenerator, InitializingBean {
                             log.warn("WorkerId '{}' exceeds max workerId '{}'", workerId, bitsAllocator.getMaxWorkerId());
                         }
                         workerId = workerId % bitsAllocator.getMaxWorkerId();
-                        if (log.isInfoEnabled()) {
-                            log.info("Reset new workerId to '{}'", workerId);
+                        if (log.isDebugEnabled()) {
+                            log.debug("Reset new workerId to '{}'", workerId);
                         }
                     }
                 }

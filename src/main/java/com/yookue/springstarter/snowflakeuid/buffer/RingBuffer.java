@@ -16,9 +16,9 @@
 
 package com.yookue.springstarter.snowflakeuid.buffer;
 
+
 import java.util.concurrent.atomic.AtomicLong;
-import javax.annotation.Nonnegative;
-import javax.annotation.Nonnull;
+import jakarta.annotation.Nonnull;
 import org.springframework.util.Assert;
 import com.yookue.springstarter.snowflakeuid.concurrent.PaddedAtomicLong;
 import lombok.Getter;
@@ -104,21 +104,21 @@ public class RingBuffer {
     /**
      * Constructor with buffer size
      *
-     * @param bufferSize must be positive & a power of 2
+     * @param bufferSize must be positive and a power of 2
      */
-    public RingBuffer(@Nonnegative int bufferSize) {
+    public RingBuffer(int bufferSize) {
         this(bufferSize, DEFAULT_PADDING_PERCENT);
     }
 
     /**
-     * Constructor with buffer size & padding factor
+     * Constructor with buffer size and padding factor
      *
-     * @param bufferSize must be positive & a power of 2
+     * @param bufferSize must be positive and a power of 2
      * @param paddingFactor percent in (0 - 100). When the count of rest available UIDs reach the threshold, it will trigger padding buffer<br>
-     * Sample: paddingFactor=20, bufferSize=1000 -> threshold=1000 * 20 /100,
-     * padding buffer will be triggered when tail-cursor<threshold
+     * Sample: paddingFactor=20, bufferSize=1000 -&gt; threshold=1000 * 20 /100,
+     * padding buffer will be triggered when tail-cursor &lt; threshold
      */
-    public RingBuffer(@Nonnegative int bufferSize, @Nonnegative int paddingFactor) {
+    public RingBuffer(int bufferSize, int paddingFactor) {
         // check buffer size is positive & a power of 2; padding factor in (0, 100)
         Assert.isTrue(bufferSize > 0L, "RingBuffer size must be positive");
         Assert.isTrue(Integer.bitCount(bufferSize) == 1, "RingBuffer size must be a power of 2");
@@ -133,15 +133,19 @@ public class RingBuffer {
     }
 
     /**
-     * Put an UID in the ring & tail moved<br>
-     * We use 'synchronized' to guarantee the UID fill in slot & publish new tail sequence as atomic operations<br>
+     * Put an UID in the ring and tail moved
+     * <br>
+     * We use 'synchronized' to guarantee the UID fill in slot and publish new tail sequence as atomic operations
+     * <br>
      *
-     * <b>Note that: </b> It is recommended to put UID in a serialize way, cause we once batch generate a series UIDs and put
+     * <b>Note that: </b> It is recommended to put UID in a serialize way, we once batch generate a series UIDs and put
      * the one by one into the buffer, so it is unnecessary put in multi-threads
      *
      * @return false means that the buffer is full, apply {@link RejectedPutBufferHandler}
      */
-    public synchronized boolean put(@Nonnegative long uid) {
+    public synchronized boolean put(long uid) {
+        Assert.isTrue(uid > 0L, "UID must be positive");
+
         long currentTail = tail.get();
         long currentCursor = cursor.get();
 
@@ -160,7 +164,7 @@ public class RingBuffer {
         }
 
         // 2. put UID in the next slot
-        // 3. update next slot' flag to CAN_TAKE_FLAG
+        // 3. update next slot's flag to CAN_TAKE_FLAG
         // 4. publish tail with sequence increase by one
         slots[nextTailIndex] = uid;
         flags[nextTailIndex].set(CAN_TAKE_FLAG);
@@ -207,7 +211,7 @@ public class RingBuffer {
 
         // 1. check next slot flag is CAN_TAKE_FLAG
         int nextCursorIndex = calSlotIndex(nextCursor);
-        Assert.isTrue(flags[nextCursorIndex].get() == CAN_TAKE_FLAG, "Cursor not in takeable status.");
+        Assert.isTrue(flags[nextCursorIndex].get() == CAN_TAKE_FLAG, "Cursor not in take-able status.");
 
         // 2. get UID from next slot
         // 3. set next slot flag as CAN_PUT_FLAG.
@@ -248,7 +252,9 @@ public class RingBuffer {
     /**
      * Initialize flags as CAN_PUT_FLAG
      */
-    private PaddedAtomicLong[] initFlags(@Nonnegative int bufferSize) {
+    private PaddedAtomicLong[] initFlags(int bufferSize) {
+        Assert.isTrue(bufferSize > 0L, "Buffer size must be positive");
+
         if (bufferSize > 0) {
             PaddedAtomicLong[] atomicLongs = new PaddedAtomicLong[bufferSize];
             for (int i = 0; i < bufferSize; i++) {

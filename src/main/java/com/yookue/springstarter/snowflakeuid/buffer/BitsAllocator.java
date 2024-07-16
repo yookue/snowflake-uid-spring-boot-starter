@@ -29,6 +29,7 @@ import lombok.ToString;
  *
  * @author yutianbao
  */
+@Getter
 @ToString
 @SuppressWarnings("unused")
 public class BitsAllocator {
@@ -36,32 +37,32 @@ public class BitsAllocator {
      * Total 64 bits
      */
     public static final int TOTAL_BITS = 1 << 6;
-    @Getter
+
     private final int timestampBits;
-    @Getter
+
     private final int workerIdBits;
-    @Getter
+
     private final int sequenceBits;
+
     /**
      * Max value for workId & sequence
      */
-    @Getter
     private final long maxDeltaSeconds;
-    @Getter
+
     private final long maxWorkerId;
-    @Getter
+
     private final long maxSequence;
+
     /**
-     * Shift for timestamp & workerId
+     * Shift for timestamp and workerId
      */
-    @Getter
     private final int timestampShift;
-    @Getter
+
     private final int workerIdShift;
+
     /**
      * Bits for [sign-> second-> workId-> sequence]
      */
-    @Getter
     private final int signBits = 1;
 
     /**
@@ -89,7 +90,7 @@ public class BitsAllocator {
     }
 
     /**
-     * Allocate bits for UID according to delta seconds & workerId & sequence<br>
+     * Allocate bits for UID according to delta seconds, workerId and sequence<br>
      * <b>Note that: </b>The highest bit will always be 0 for sign
      */
     public long allocate(long deltaSeconds, long workerId, long sequence) {

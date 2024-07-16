@@ -22,6 +22,8 @@ package com.yookue.springstarter.snowflakeuid.composer;
  *
  * @author yutianbao
  */
+@FunctionalInterface
 public interface WorkerIdAssigner {
+    @SuppressWarnings("RedundantThrows")
     long generateWorkerId() throws Exception;
 }

@@ -23,8 +23,7 @@ import java.util.concurrent.Executors;
 import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.TimeUnit;
 import java.util.concurrent.atomic.AtomicBoolean;
-import javax.annotation.Nonnegative;
-import javax.annotation.Nonnull;
+import jakarta.annotation.Nonnull;
 import org.springframework.util.Assert;
 import com.yookue.springstarter.snowflakeuid.concurrent.NamingThreadFactory;
 import com.yookue.springstarter.snowflakeuid.concurrent.PaddedAtomicLong;
@@ -91,7 +90,7 @@ public class BufferedPaddingExecutor {
     }
 
     /**
-     * Constructor with {@link RingBuffer}, {@link BufferedUniqueProvider}, and whether use schedule padding
+     * Constructor with {@link RingBuffer}, {@link BufferedUniqueProvider}, and whether it use schedule padding
      */
     public BufferedPaddingExecutor(@Nonnull RingBuffer ringBuffer, @Nonnull BufferedUniqueProvider uidProvider, boolean usingSchedule) {
         this.running = new AtomicBoolean(false);
@@ -179,7 +178,7 @@ public class BufferedPaddingExecutor {
     /**
      * Setters
      */
-    public void setScheduleInterval(@Nonnegative long scheduleInterval) {
+    public void setScheduleInterval(long scheduleInterval) {
         Assert.isTrue(scheduleInterval > 0, "Schedule interval must positive!");
         this.scheduleInterval = scheduleInterval;
     }

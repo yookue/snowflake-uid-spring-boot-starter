@@ -19,8 +19,8 @@ package com.yookue.springstarter.snowflakeuid.composer.impl;
 
 import java.util.ArrayList;
 import java.util.List;
-import javax.annotation.Nonnull;
-import javax.annotation.Nullable;
+import jakarta.annotation.Nonnull;
+import jakarta.annotation.Nullable;
 import org.apache.commons.lang3.ObjectUtils;
 import org.apache.commons.lang3.math.NumberUtils;
 import org.springframework.beans.factory.DisposableBean;
@@ -39,12 +39,12 @@ import lombok.extern.slf4j.Slf4j;
  * <p>
  * Extends from {@link DefaultUidGenerator}, based on a lock free {@link RingBuffer}
  * <p>
- * The spring properties you can specified as below:<br>
+ * The spring properties you can specify as below:<br>
  * <li><b>boostPower:</b> RingBuffer size boost for a power of 2, Sample: boostPower is 3, it means the buffer size
  * will be <code>(BitsAllocator#getMaxSequence() + 1) &lt;&lt; boostPower</code>
  * <li><b>paddingFactor:</b> Represents a percent value of (0 - 100). When the count of rest available UIDs reach the
  * threshold, it will trigger padding buffer. Default as{@link RingBuffer#DEFAULT_PADDING_PERCENT}
- * Sample: paddingFactor=20, bufferSize=1000 -> threshold=1000 * 20 /100, padding buffer will be triggered when tail-cursor<threshold
+ * Sample: paddingFactor=20, bufferSize=1000 -&gt; threshold=1000 * 20 /100, padding buffer will be triggered when tail-cursor &lt; threshold
  * <li><b>scheduleInterval:</b> Padding buffer in a schedule, specify padding buffer interval, Unit as second
  * <li><b>putBufferHandler:</b> Policy for rejected put buffer. Default as discard put request, just do logging
  * <li><b>takeBufferHandler:</b> Policy for rejected take buffer. Default as throwing up an exception

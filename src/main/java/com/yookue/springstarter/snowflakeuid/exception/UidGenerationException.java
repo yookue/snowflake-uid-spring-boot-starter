@@ -32,7 +32,7 @@ public class UidGenerationException extends RuntimeException {
     }
 
     /**
-     * Constructor with message & cause
+     * Constructor with message and cause
      */
     public UidGenerationException(String message, Throwable cause) {
         super(message, cause);

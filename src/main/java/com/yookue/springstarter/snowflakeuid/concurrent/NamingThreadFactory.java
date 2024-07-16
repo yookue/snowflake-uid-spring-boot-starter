@@ -21,10 +21,11 @@ import java.lang.Thread.UncaughtExceptionHandler;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.ThreadFactory;
 import java.util.concurrent.atomic.AtomicLong;
-import javax.annotation.Nonnull;
-import javax.annotation.Nullable;
+import jakarta.annotation.Nonnull;
+import jakarta.annotation.Nullable;
 import org.apache.commons.lang3.ArrayUtils;
 import org.apache.commons.lang3.ClassUtils;
+import org.apache.commons.lang3.ObjectUtils;
 import org.apache.commons.lang3.StringUtils;
 import lombok.Getter;
 import lombok.Setter;
@@ -93,16 +94,13 @@ public class NamingThreadFactory implements ThreadFactory {
     public Thread newThread(@Nonnull Runnable runnable) {
         Thread thread = new Thread(runnable);
         thread.setDaemon(this.daemon);
-        // If there is no specified name for thread, it will auto detect using the invoker classname instead.
-        // Notice that auto detect may cause some performance overhead
+        // If there is no specified name for thread, it will auto-detect using the invoker classname instead.
+        // Notice that auto-detect may cause some performance overhead
         String prefix = StringUtils.defaultIfBlank(this.name, getInvoker());
         thread.setName(prefix + "-" + getSequence(prefix));    // $NON-NLS-1$
-        // no specified uncaughtExceptionHandler, just do logging.
-        if (this.uncaughtExceptionHandler != null) {
-            thread.setUncaughtExceptionHandler(this.uncaughtExceptionHandler);
-        } else {
-            thread.setUncaughtExceptionHandler((t, ex) -> log.error("unhandled exception in thread: {}-{}", t.getId(), t.getName(), ex));
-        }
+        // no specified uncaughtExceptionHandler, just do logging
+        UncaughtExceptionHandler handler = (t, ex) -> log.error("unhandled exception in thread: {}-{}", t.getId(), t.getName(), ex);
+        thread.setUncaughtExceptionHandler(ObjectUtils.defaultIfNull(this.uncaughtExceptionHandler, handler));
         return thread;
     }
 

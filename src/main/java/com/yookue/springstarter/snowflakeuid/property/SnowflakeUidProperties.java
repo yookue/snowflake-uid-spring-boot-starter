@@ -37,12 +37,12 @@ import lombok.ToString;
  * @author David Hsing
  */
 @ConfigurationProperties(prefix = SnowflakeUidAutoConfiguration.PROPERTIES_PREFIX)
+@Getter
 @ToString
 public class SnowflakeUidProperties implements Serializable, InitializingBean {
     /**
      * Enable this starter, default is {@code true}
      */
-    @Getter
     @Setter
     private Boolean enabled;
 
@@ -50,50 +50,43 @@ public class SnowflakeUidProperties implements Serializable, InitializingBean {
      * Time increment value occupancy digits<br/>
      * The incremental value of the current time relative to the time basis point, in seconds
      */
-    @Getter
     @Setter
     private Integer timeBits = 33;
 
     /**
      * Number of digits occupied by the working machine ID
      */
-    @Getter
     @Setter
     private Integer workerBits = 20;
 
     /**
      * Number of digits occupied by the serial number
      */
-    @Getter
     @Setter
     private Integer seqBits = 10;
 
     /**
      * The epoch base point date
      */
-    @Getter
     @Setter
-    private String epochPoint = "2022-01-01";    // $NON-NLS-1$
+    private String epochPoint = "2024-01-01";    // $NON-NLS-1$
 
     /**
      * Number of milliseconds corresponding to the epoch base point date
      * <p>
      * For example, 2019-02-20 represents 1550592000000
      */
-    @Getter
     private Long epochSeconds = 0L;
 
     /**
      * Indicates whether allow clock go backward or not
      */
-    @Getter
     @Setter
     private Boolean backwardEnabled = true;
 
     /**
      * The max seconds of clock going backward
      */
-    @Getter
     @Setter
     private Long maxBackwardSeconds = 1L;
 
@@ -104,10 +97,9 @@ public class SnowflakeUidProperties implements Serializable, InitializingBean {
      * <p>
      * For example, defaults 3, represents
      * <pre><code>
-     *     bufferSize = 8192    =&gt;    bufferSize = 8192 << 3 = 65536
+     *     bufferSize = 8192    =&gt;    bufferSize = 8192 &lt;&lt; 3 = 65536
      * </code></pre>
      */
-    @Getter
     @Setter
     private Integer boostPower = 3;
 
@@ -121,7 +113,6 @@ public class SnowflakeUidProperties implements Serializable, InitializingBean {
      *     bufferSize = 1024, paddingFactor = 50    =&gt;    threshold = 1024 * 50 / 100 = 512
      * </code></pre>
      */
-    @Getter
     @Setter
     private Integer paddingFactor = 50;
 
@@ -130,7 +121,6 @@ public class SnowflakeUidProperties implements Serializable, InitializingBean {
      * Defaults null, means not using the Schedule thread<br/>
      * For {@link com.yookue.springstarter.snowflakeuid.composer.impl.CacheableUidGenerator} only
      */
-    @Getter
     @Setter
     private Long scheduleInterval;
 

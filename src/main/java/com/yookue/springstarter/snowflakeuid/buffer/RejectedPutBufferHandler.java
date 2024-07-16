@@ -17,7 +17,7 @@
 package com.yookue.springstarter.snowflakeuid.buffer;
 
 
-import javax.annotation.Nonnull;
+import jakarta.annotation.Nonnull;
 
 
 /**
