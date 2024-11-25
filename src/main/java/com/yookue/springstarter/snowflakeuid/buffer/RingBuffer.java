@@ -34,8 +34,8 @@ import lombok.extern.slf4j.Slf4j;
  * the side effect of False Sharing, {@link PaddedAtomicLong} is using on 'tail' and 'cursor'
  * <p>
  * A ring buffer is consisted of:
- * <li><b>slots:</b> each element of the array is a slot, which is be set with a UID
- * <li><b>flags:</b> flag array corresponding the same index with the slots, indicates whether can take or put slot
+ * <li><b>slots:</b> each element of the array is a slot, which is set with a UID
+ * <li><b>flags:</b> flag array corresponding the same index with the slots, indicates whether it can take or put slot
  * <li><b>tail:</b> a sequence of the max slot position to produce
  * <li><b>cursor:</b> a sequence of the min slot position to consume
  * </p>
@@ -198,8 +198,8 @@ public class RingBuffer {
         // trigger padding in an async-mode if reach the threshold
         long currentTail = tail.get();
         if (currentTail - nextCursor < paddingThreshold) {
-            if (log.isInfoEnabled()) {
-                log.info("Reach the padding threshold '{}'. tail '{}', cursor '{}', rest '{}'.", paddingThreshold, currentTail, nextCursor, currentTail - nextCursor);
+            if (log.isDebugEnabled()) {
+                log.debug("Reach the padding threshold '{}'. tail '{}', cursor '{}', rest '{}'.", paddingThreshold, currentTail, nextCursor, currentTail - nextCursor);
             }
             bufferPaddingExecutor.asyncPadding();
         }

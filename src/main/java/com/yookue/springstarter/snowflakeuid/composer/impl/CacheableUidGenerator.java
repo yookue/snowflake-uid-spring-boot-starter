@@ -131,8 +131,8 @@ public class CacheableUidGenerator extends DefaultUidGenerator implements Dispos
         // initialize RingBuffer
         int bufferSize = ((int) super.getBitsAllocator().getMaxSequence() + 1) << super.getUidProperties().getBoostPower();
         ringBuffer = new RingBuffer(bufferSize, super.getUidProperties().getPaddingFactor());
-        if (log.isInfoEnabled()) {
-            log.info("Initialized ring buffer size '{}', paddingFactor '{}'", bufferSize, super.getUidProperties().getPaddingFactor());
+        if (log.isDebugEnabled()) {
+            log.debug("Initialized ring buffer size '{}', paddingFactor '{}'", bufferSize, super.getUidProperties().getPaddingFactor());
         }
         // initialize RingBufferPaddingExecutor
         boolean usingSchedule = ObjectUtils.compare(super.getUidProperties().getScheduleInterval(), NumberUtils.LONG_ZERO) > 0;
@@ -140,8 +140,8 @@ public class CacheableUidGenerator extends DefaultUidGenerator implements Dispos
         if (usingSchedule) {
             paddingExecutor.setScheduleInterval(super.getUidProperties().getScheduleInterval());
         }
-        if (log.isInfoEnabled()) {
-            log.info("Initialized BufferedPaddingExecutor. Using schedule '{}', interval '{}'", usingSchedule, super.getUidProperties().getScheduleInterval());
+        if (log.isDebugEnabled()) {
+            log.debug("Initialized BufferedPaddingExecutor. Using schedule '{}', interval '{}'", usingSchedule, super.getUidProperties().getScheduleInterval());
         }
         // set rejected put/take handle policy
         ringBuffer.setBufferPaddingExecutor(paddingExecutor);
@@ -155,8 +155,8 @@ public class CacheableUidGenerator extends DefaultUidGenerator implements Dispos
         paddingExecutor.paddingBuffer();
         // start buffer padding threads
         paddingExecutor.start();
-        if (log.isInfoEnabled()) {
-            log.info("Initialized ring buffer successful");
+        if (log.isDebugEnabled()) {
+            log.debug("Initialized ring buffer successful");
         }
     }
 }

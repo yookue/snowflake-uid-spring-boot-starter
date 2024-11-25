@@ -38,6 +38,7 @@ import lombok.experimental.Accessors;
 @Getter
 @Setter
 @ToString
+@SuppressWarnings("unused")
 public class UidGeneratorStruct implements Serializable {
     private long uniqueId;
     private long workerId;

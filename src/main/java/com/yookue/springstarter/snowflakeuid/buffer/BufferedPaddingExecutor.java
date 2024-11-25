@@ -147,13 +147,13 @@ public class BufferedPaddingExecutor {
      * Padding buffer fill the slots until to catch the cursor
      */
     public void paddingBuffer() {
-        if (log.isInfoEnabled()) {
-            log.info("Ready to padding buffer last second '{}'. {}", lastSecond.get(), ringBuffer);
+        if (log.isDebugEnabled()) {
+            log.debug("Ready to padding buffer last second '{}'. {}", lastSecond.get(), ringBuffer);
         }
         // is still running
         if (!running.compareAndSet(false, true)) {
-            if (log.isInfoEnabled()) {
-                log.info("Padding buffer is still running. {}", ringBuffer);
+            if (log.isDebugEnabled()) {
+                log.debug("Padding buffer is still running. {}", ringBuffer);
             }
             return;
         }
@@ -170,8 +170,8 @@ public class BufferedPaddingExecutor {
         }
         // not running now
         running.compareAndSet(true, false);
-        if (log.isInfoEnabled()) {
-            log.info("End to padding buffer last second '{}'. {}", lastSecond.get(), ringBuffer);
+        if (log.isDebugEnabled()) {
+            log.debug("End to padding buffer last second '{}'. {}", lastSecond.get(), ringBuffer);
         }
     }
 

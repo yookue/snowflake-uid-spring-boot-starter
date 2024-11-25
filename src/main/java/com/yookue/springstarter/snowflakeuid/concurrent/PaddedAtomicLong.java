@@ -29,12 +29,12 @@ import java.util.concurrent.atomic.AtomicLong;
  *
  * @author yutianbao
  */
-@SuppressWarnings({"unused", "WeakerAccess"})
+@SuppressWarnings("unused")
 public class PaddedAtomicLong extends AtomicLong {
     /**
      * Padded 6 long (48 bytes)
      */
-    public volatile long p1, p2, p3, p4, p5, p6 = 7L;
+    private volatile long p1, p2, p3, p4, p5;
 
     /**
      * Constructors from {@link AtomicLong}
@@ -51,6 +51,6 @@ public class PaddedAtomicLong extends AtomicLong {
      * To prevent GC optimizations for cleaning unused padded references
      */
     public long sumPaddingToPreventOptimization() {
-        return p1 + p2 + p3 + p4 + p5 + p6;
+        return p1 + p2 + p3 + p4 + p5 + 7L;
     }
 }

@@ -52,7 +52,7 @@ import lombok.extern.slf4j.Slf4j;
  *   1bit          28bits              22bits         13bits
  * }</pre>
  * <p>
- * You can also specified the bits by Spring property setting.
+ * You can also specify the bits by Spring property setting.
  * <li>timeBits: default as 28
  * <li>workerBits: default as 22
  * <li>seqBits: default as 13

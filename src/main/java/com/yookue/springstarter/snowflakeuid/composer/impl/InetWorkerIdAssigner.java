@@ -55,8 +55,8 @@ public class InetWorkerIdAssigner implements WorkerIdAssigner, ApplicationContex
         }
         int shift = 64 - uidProperties.getWorkerBits();
         long workerId = (inet4Port << shift) >>> shift;
-        if (log.isInfoEnabled()) {
-            log.info("Generated worker id = '{}'", workerId);
+        if (log.isDebugEnabled()) {
+            log.debug("Generated worker id = '{}'", workerId);
         }
         return workerId;
     }

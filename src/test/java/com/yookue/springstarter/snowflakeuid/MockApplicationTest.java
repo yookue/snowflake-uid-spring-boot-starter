@@ -43,13 +43,17 @@ class MockApplicationTest {
     void defaultUid() {
         Assertions.assertNotNull(defaultGenerator, "Default uid generator can not be null");
         String methodName = StackTraceWraps.getExecutingMethodName();
-        log.info("{}: generated uid = {}", methodName, defaultGenerator.getUniqueId());
+        if (log.isDebugEnabled()) {
+            log.debug("{}: default generator generated uid = {}", methodName, defaultGenerator.getUniqueId());
+        }
     }
 
     @Test
     void cacheableUid() {
         Assertions.assertNotNull(cacheableGenerator, "Cacheable uid generator can not be null");
         String methodName = StackTraceWraps.getExecutingMethodName();
-        log.info("{}: generated uid = {}", methodName, cacheableGenerator.getUniqueId());
+        if (log.isDebugEnabled()) {
+            log.debug("{}: cacheable generator generated uid = {}", methodName, cacheableGenerator.getUniqueId());
+        }
     }
 }
