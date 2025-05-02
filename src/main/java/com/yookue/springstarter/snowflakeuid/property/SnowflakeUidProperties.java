@@ -23,7 +23,7 @@ import java.util.concurrent.TimeUnit;
 import org.springframework.beans.factory.InitializingBean;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.util.Assert;
-import com.yookue.commonplexus.javaseutil.util.UtilDateWraps;
+import com.yookue.commonplexus.javaseutil.util.JdkDateWraps;
 import com.yookue.springstarter.snowflakeuid.config.SnowflakeUidAutoConfiguration;
 import lombok.Getter;
 import lombok.Setter;
@@ -127,7 +127,7 @@ public class SnowflakeUidProperties implements Serializable, InitializingBean {
     @Override
     public void afterPropertiesSet() {
         Assert.isTrue(timeBits + workerBits + seqBits < 64, "Summation of timeBits + workerBits + seqBits, must be less than 64 bits.");
-        Date epochDate = UtilDateWraps.parseDateGuessing(epochPoint);
+        Date epochDate = JdkDateWraps.parseDateGuessing(epochPoint);
         if (epochDate != null) {
             epochSeconds = TimeUnit.MILLISECONDS.toSeconds(epochDate.getTime());
         }
