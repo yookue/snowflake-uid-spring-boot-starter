@@ -27,10 +27,10 @@ import com.yookue.springstarter.snowflakeuid.composer.WorkerIdAssigner;
 import com.yookue.springstarter.snowflakeuid.exception.UidGenerationException;
 import com.yookue.springstarter.snowflakeuid.property.SnowflakeUidProperties;
 import com.yookue.springstarter.snowflakeuid.structure.UidGeneratorStruct;
+import lombok.extern.slf4j.Slf4j;
 import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
-import lombok.extern.slf4j.Slf4j;
 
 
 /**
@@ -68,7 +68,7 @@ import lombok.extern.slf4j.Slf4j;
 @RequiredArgsConstructor
 @Getter(value = AccessLevel.PROTECTED)
 @Slf4j
-@SuppressWarnings({"unused", "WeakerAccess", "LoggingSimilarMessage"})
+@SuppressWarnings({"unused", "LoggingSimilarMessage", "WeakerAccess"})
 public class DefaultUidGenerator implements UidGenerator, InitializingBean {
     private final SnowflakeUidProperties uidProperties;
     private final WorkerIdAssigner idAssigner;
