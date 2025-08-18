@@ -22,8 +22,8 @@ import org.springframework.beans.factory.ObjectProvider;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.boot.autoconfigure.AutoConfigureOrder;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnBean;
+import org.springframework.boot.autoconfigure.condition.ConditionalOnBooleanProperty;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean;
-import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Lazy;
@@ -45,7 +45,7 @@ import com.yookue.springstarter.snowflakeuid.property.SnowflakeUidProperties;
  * @author David Hsing
  * @reference "https://github.com/baidu/uid-generator"
  */
-@ConditionalOnProperty(prefix = SnowflakeUidAutoConfiguration.PROPERTIES_PREFIX, name = "enabled", havingValue = "true", matchIfMissing = true)
+@ConditionalOnBooleanProperty(prefix = SnowflakeUidAutoConfiguration.PROPERTIES_PREFIX, name = "enabled", matchIfMissing = true)
 @EnableConfigurationProperties(value = SnowflakeUidProperties.class)
 @AutoConfigureOrder(value = Ordered.LOWEST_PRECEDENCE - 1000)
 @SuppressWarnings({"JavadocDeclaration", "JavadocLinkAsPlainText"})
