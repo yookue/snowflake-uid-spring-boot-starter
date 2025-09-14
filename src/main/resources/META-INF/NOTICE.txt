@@ -1,6 +1,6 @@
 Snowflake Uid for Spring Boot Starter
-Copyright (c) 2020 Yookue Ltd. All rights reserved.
-https://yookue.com
+Copyright (c) 2020 Unikue Ltd. All rights reserved.
+https://unikue.cn
 
 UidGenerator
 https://github.com/baidu/uid-generator

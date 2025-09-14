@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!--
- * Copyright (c) 2020 Yookue Ltd. All rights reserved.
+ * Copyright (c) 2020 Unikue Ltd. All rights reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -20,18 +20,18 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
-    <groupId>com.yookue.springstarter</groupId>
+    <groupId>cn.unikue.springstarter</groupId>
     <artifactId>snowflake-uid-spring-boot-starter</artifactId>
-    <version>3.5.4</version>
+    <version>3.5.5</version>
 
     <name>${project.artifactId}</name>
-    <description>Yookue Snowflake UID for Spring Boot Starter</description>
-    <url>https://github.com/yookue/snowflake-uid-spring-boot-starter</url>
+    <description>Unikue Snowflake UID for Spring Boot Starter</description>
+    <url>https://github.com/unikueltd/snowflake-uid-spring-boot-starter</url>
     <inceptionYear>2020</inceptionYear>
 
     <organization>
-        <name>Yookue Ltd</name>
-        <url>https://yookue.com</url>
+        <name>Unikue Ltd</name>
+        <url>https://unikue.cn</url>
     </organization>
 
     <properties>
@@ -47,15 +47,15 @@
         <project.build.resourceEncoding>${file.encoding}</project.build.resourceEncoding>
         <project.reporting.outputEncoding>${file.encoding}</project.reporting.outputEncoding>
 
-        <spring-boot.version>3.5.4</spring-boot.version>
+        <spring-boot.version>3.5.5</spring-boot.version>
 
-        <plexus-spring-util.version>3.5.4</plexus-spring-util.version>
+        <plexus-spring-util.version>3.5.5</plexus-spring-util.version>
 
-        <javadoc-docent-maven-plugin.version>2.0.2</javadoc-docent-maven-plugin.version>
+        <javadoc-docent-maven-plugin.version>2.1.0</javadoc-docent-maven-plugin.version>
         <maven-compiler-plugin.version>3.14.0</maven-compiler-plugin.version>
         <maven-install-plugin.version>3.1.4</maven-install-plugin.version>
         <maven-jar-plugin.version>3.4.2</maven-jar-plugin.version>
-        <maven-javadoc-plugin.version>3.11.2</maven-javadoc-plugin.version>
+        <maven-javadoc-plugin.version>3.11.3</maven-javadoc-plugin.version>
         <maven-resources-plugin.version>3.3.1</maven-resources-plugin.version>
         <maven-source-plugin.version>3.3.1</maven-source-plugin.version>
         <maven-gpg-plugin.version>3.2.8</maven-gpg-plugin.version>
@@ -87,7 +87,7 @@
             <optional>true</optional>
         </dependency>
         <dependency>
-            <groupId>com.yookue.commonplexus</groupId>
+            <groupId>cn.unikue.commonplexus</groupId>
             <artifactId>plexus-spring-util</artifactId>
             <version>${plexus-spring-util.version}</version>
             <exclusions>
@@ -295,11 +295,11 @@
                     </links>
                     <taglets>
                         <taglet>
-                            <tagletClass>com.yookue.mavenplugin.javadocdocent.taglet.ReferenceTaglet</tagletClass>
+                            <tagletClass>cn.unikue.mavenplugin.javadocdocent.taglet.ReferenceTaglet</tagletClass>
                         </taglet>
                     </taglets>
                     <tagletArtifact>
-                        <groupId>com.yookue.mavenplugin</groupId>
+                        <groupId>cn.unikue.mavenplugin</groupId>
                         <artifactId>javadoc-docent-maven-plugin</artifactId>
                         <version>${javadoc-docent-maven-plugin.version}</version>
                     </tagletArtifact>
@@ -385,14 +385,14 @@
     </build>
 
     <scm>
-        <url>https://github.com/yookue/snowflake-uid-spring-boot-starter</url>
-        <connection>scm:git:https://github.com/yookue/snowflake-uid-spring-boot-starter.git</connection>
-        <developerConnection>scm:git:https://github.com/yookue/snowflake-uid-spring-boot-starter.git</developerConnection>
+        <url>https://github.com/unikueltd/snowflake-uid-spring-boot-starter</url>
+        <connection>scm:git:https://github.com/unikueltd/snowflake-uid-spring-boot-starter.git</connection>
+        <developerConnection>scm:git:https://github.com/unikueltd/snowflake-uid-spring-boot-starter.git</developerConnection>
     </scm>
 
     <issueManagement>
         <system>Github</system>
-        <url>https://github.com/yookue/snowflake-uid-spring-boot-starter/issues</url>
+        <url>https://github.com/unikueltd/snowflake-uid-spring-boot-starter/issues</url>
     </issueManagement>
 
     <licenses>
@@ -405,7 +405,7 @@
 
     <developers>
         <developer>
-            <name>Yookue Ltd</name>
+            <name>Unikue Ltd</name>
         </developer>
         <developer>
             <id>davidhsing</id>
@@ -417,8 +417,8 @@
             <roles>
                 <role>developer</role>
             </roles>
-            <organization>Yookue Ltd</organization>
-            <organizationUrl>https://yookue.com</organizationUrl>
+            <organization>Unikue Ltd</organization>
+            <organizationUrl>https://unikue.cn</organizationUrl>
             <timezone>China/Beijing</timezone>
         </developer>
     </developers>
